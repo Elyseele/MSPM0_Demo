@@ -1,0 +1,12 @@
+"./OPA_Change.o"
+"./syscfg/ti_msp_dl_config.o"
+"./startup_mspm0g350x_ticlang.o"
+"./delay.o"
+"./i2c.o"
+"./oled.o"
+"./opa.o"
+"./printf.o"
+"./uart.o"
+-l"syscfg/device_linker.cmd"
+-ldevice.cmd.genlibs
+-llibc.a

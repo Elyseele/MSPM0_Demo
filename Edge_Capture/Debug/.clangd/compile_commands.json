@@ -1,0 +1,12 @@
+[
+   {
+      "directory" : "D:/ti/CCSTheia/CCS_Project/Edge_Capture/Debug",
+      "command"   : "clang++ -D__MSPM0G3507__ -I\"D:/ti/CCSTheia/CCS_Project/Edge_Capture\" -I\"D:/ti/CCSTheia/CCS_Project/Edge_Capture/Debug\" -I\"D:/ti/mspm0_sdk_2_02_00_05/source/third_party/CMSIS/Core/Include\" -I\"D:/ti/mspm0_sdk_2_02_00_05/source\" -isystem\"D:/ti/CCSTheia/ccstheia/ccs/tools/compiler/ti-cgt-armllvm_4.0.0.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/ti/CCSTheia/ccstheia/ccs/tools/compiler/ti-cgt-armllvm_4.0.0.LTS/include/c++/v1\" -isystem\"D:/ti/CCSTheia/ccstheia/ccs/tools/compiler/ti-cgt-armllvm_4.0.0.LTS/lib/clang/18/include\" -isystem\"D:/ti/CCSTheia/ccstheia/ccs/tools/compiler/ti-cgt-armllvm_4.0.0.LTS/include/c\"",
+      "file"      : "D:/ti/CCSTheia/CCS_Project/Edge_Capture/Debug/ti_msp_dl_config.c"
+   },
+   {
+      "directory" : "D:/ti/CCSTheia/CCS_Project/Edge_Capture/Debug",
+      "command"   : "clang++ -D__MSPM0G3507__ -I\"D:/ti/CCSTheia/CCS_Project/Edge_Capture\" -I\"D:/ti/CCSTheia/CCS_Project/Edge_Capture/Debug\" -I\"D:/ti/mspm0_sdk_2_02_00_05/source/third_party/CMSIS/Core/Include\" -I\"D:/ti/mspm0_sdk_2_02_00_05/source\" -isystem\"D:/ti/CCSTheia/ccstheia/ccs/tools/compiler/ti-cgt-armllvm_4.0.0.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/ti/CCSTheia/ccstheia/ccs/tools/compiler/ti-cgt-armllvm_4.0.0.LTS/include/c++/v1\" -isystem\"D:/ti/CCSTheia/ccstheia/ccs/tools/compiler/ti-cgt-armllvm_4.0.0.LTS/lib/clang/18/include\" -isystem\"D:/ti/CCSTheia/ccstheia/ccs/tools/compiler/ti-cgt-armllvm_4.0.0.LTS/include/c\"",
+      "file"      : "D:/ti/CCSTheia/CCS_Project/Edge_Capture/timx_timer_mode_compare_edge_count.c"
+   }
+]

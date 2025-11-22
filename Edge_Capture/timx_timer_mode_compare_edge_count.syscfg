@@ -1,0 +1,113 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "MSPM0G350X" --part "Default" --package "LQFP-64(PM)" --product "mspm0_sdk@2.02.00.05"
+ * @v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)" --product "mspm0_sdk@2.02.00.05"
+ * @versions {"tool":"1.21.1+3772"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const COMPARE  = scripting.addModule("/ti/driverlib/COMPARE", {}, false);
+const COMPARE1 = COMPARE.addInstance();
+const COMPARE2 = COMPARE.addInstance();
+const GPIO     = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1    = GPIO.addInstance();
+const PWM      = scripting.addModule("/ti/driverlib/PWM", {}, false);
+const PWM1     = PWM.addInstance();
+const SYSCTL   = scripting.addModule("/ti/driverlib/SYSCTL");
+const TIMER    = scripting.addModule("/ti/driverlib/TIMER", {}, false);
+const TIMER1   = TIMER.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const mux4       = system.clockTree["EXHFMUX"];
+mux4.inputSelect = "EXHFMUX_XTAL";
+
+const mux8       = system.clockTree["HSCLKMUX"];
+mux8.inputSelect = "HSCLKMUX_HFCLK";
+
+const mux12       = system.clockTree["SYSPLLMUX"];
+mux12.inputSelect = "zSYSPLLMUX_HFCLK";
+
+const pinFunction4        = system.clockTree["HFXT"];
+pinFunction4.inputFreq    = 40;
+pinFunction4.enable       = true;
+pinFunction4.HFXTStartup  = 10;
+pinFunction4.HFCLKMonitor = true;
+
+COMPARE1.$name                          = "COMPARE_0";
+COMPARE1.timerStartTimer                = true;
+COMPARE1.timerClkDiv                    = 2;
+COMPARE1.event1PublisherChannel         = 1;
+COMPARE1.timerPeriod                    = 1;
+COMPARE1.event1ControllerInterruptEn    = ["CC0_UP_EVENT"];
+COMPARE1.event2ControllerInterruptEn    = ["CC0_UP_EVENT"];
+COMPARE1.subscriberChannel              = 3;
+COMPARE1.mainCrossTriggerSource         = "CCD0";
+COMPARE1.crossTriggerAuthority          = "Secondary";
+COMPARE1.compareMode                    = "EDGE_COUNT_UP";
+COMPARE1.peripheral.$assign             = "TIMA1";
+COMPARE1.peripheral.ccp0Pin.$assign     = "PB2";
+COMPARE1.ccp0PinConfig.$name            = "ti_driverlib_gpio_GPIOPinGeneric0";
+COMPARE1.ccp0PinConfig.enableConfig     = true;
+COMPARE1.ccp0PinConfig.internalResistor = "PULL_DOWN";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+COMPARE2.$name              = "COMPARE_1";
+COMPARE2.subscriberPort     = "FSUB0";
+COMPARE2.triggerSelect      = "Trigger";
+COMPARE2.timerStartTimer    = true;
+COMPARE2.compareMode        = "EDGE_COUNT_UP";
+COMPARE2.timerPeriod        = 65535;
+COMPARE2.subscriberChannel  = 1;
+COMPARE2.peripheral.$assign = "TIMG12";
+
+GPIO1.$name                                 = "GPIO_LEDS";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name               = "USER_LED_1";
+GPIO1.associatedPins[0].assignedPort        = "PORTA";
+GPIO1.associatedPins[0].initialValue        = "SET";
+GPIO1.associatedPins[0].subChanID           = 2;
+GPIO1.associatedPins[0].subOutputPolicy     = "TOGGLE";
+GPIO1.associatedPins[0].pin.$assign         = "PA0";
+GPIO1.associatedPins[1].assignedPort        = "PORTA";
+GPIO1.associatedPins[1].assignedPortSegment = "Lower";
+GPIO1.associatedPins[1].$name               = "USER_TEST";
+GPIO1.associatedPins[1].initialValue        = "SET";
+GPIO1.associatedPins[1].pin.$assign         = "PA15";
+
+PWM1.$name                   = "PWM_0";
+PWM1.ccIndex                 = [0];
+PWM1.timerCount              = 5;
+PWM1.peripheral.$assign      = "TIMG0";
+PWM1.PWM_CHANNEL_0.$name     = "ti_driverlib_pwm_PWMTimerCC0";
+PWM1.PWM_CHANNEL_0.dutyCycle = 50;
+PWM1.ccp0PinConfig.$name     = "ti_driverlib_gpio_GPIOPinGeneric1";
+
+SYSCTL.clockTreeEn = true;
+
+TIMER1.$name              = "TIMER_0";
+TIMER1.timerMode          = "PERIODIC";
+TIMER1.timerStartTimer    = true;
+TIMER1.interrupts         = ["ZERO"];
+TIMER1.timerClkPrescale   = 128;
+TIMER1.timerClkDiv        = 8;
+TIMER1.timerPeriod        = "1s";
+TIMER1.peripheral.$assign = "TIMG7";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+pinFunction4.peripheral.$suggestSolution           = "SYSCTL";
+pinFunction4.peripheral.hfxInPin.$suggestSolution  = "PA5";
+pinFunction4.peripheral.hfxOutPin.$suggestSolution = "PA6";
+Board.peripheral.$suggestSolution                  = "DEBUGSS";
+Board.peripheral.swclkPin.$suggestSolution         = "PA20";
+Board.peripheral.swdioPin.$suggestSolution         = "PA19";
+PWM1.peripheral.ccp0Pin.$suggestSolution           = "PA12";
