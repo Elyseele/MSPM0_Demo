@@ -1,0 +1,8 @@
+"./main.o"
+"./ti_msp_dl_config.o"
+"./startup_mspm0g351x_ticlang.o"
+"./usercode/delay.o"
+"./usercode/tjc_usart_hmi.o"
+-l"./device_linker.cmd"
+-ldevice.cmd.genlibs
+-llibc.a
